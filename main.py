@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # вывод списка ПК подключенных к базам 1С согласно журналу IIS
 from datetime import datetime
-import socket
+import socket, os.path
 
 def get_device_name(ip_address):
     try:
@@ -13,6 +13,10 @@ def get_device_name(ip_address):
 
 today=datetime.now().strftime('%y%m%d')
 filename ='C:/inetpub/logs/LogFiles/W3SVC1/u_ex'+today+'.log'
+if not os.path.isfile(filename):
+    print ('никто сегодня не подключался через IIS')
+    input() # ожидание нажатия любой кнопки
+    exit()
 items={} #Словарь
 # Чтение лог-файла и загрузка его содержимого
 with open(filename, 'r') as f:
