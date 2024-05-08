@@ -4,9 +4,6 @@
 from datetime import datetime
 import socket, os.path, time
 
-def get_client_name(device_name):
-    return clients[device_name.lower()]
-
 def get_device_name(ip_address):
     try:
         device_name = socket.gethostbyaddr(ip_address)[0]
